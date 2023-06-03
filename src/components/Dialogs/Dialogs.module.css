@@ -1,0 +1,27 @@
+.dialogs{
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+}
+.dialogs__item{
+    height: 50px;
+    background: #aadaf5;
+    margin-bottom: 5px;
+    border-radius: 15px;
+    padding: 5px 10px;
+    display: block;
+    color: #000;
+    text-decoration: none;
+}
+.messages{
+    padding: 5px 0 0 20px;
+}
+.messages__item{
+    padding: 5px 0 10px 5px;
+    background: #cce4f1;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+.active{
+    background-color: #477088;
+    color: #90c5e4;
+}

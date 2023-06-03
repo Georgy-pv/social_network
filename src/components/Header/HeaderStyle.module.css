@@ -1,0 +1,13 @@
+.header{
+    height: 60px;
+    margin: 0 auto;
+    position: relative;
+    background: #2cb2ff;
+    border-radius: 25px;
+    padding: 0 20px;
+}
+.logo{
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%)
+}

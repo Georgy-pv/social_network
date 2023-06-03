@@ -1,0 +1,25 @@
+.posts{
+    background: #edf6fc;
+    border: 2px solid #aadaf5;
+    border-radius: 15px;
+    padding: 5px 10px;
+}
+
+.posts__title{
+    margin: 5px 0;
+}
+.posts__new{
+    text-align: right;
+}
+.posts__new-text{
+    width: 100%;
+    display: block;
+    outline: none;
+	-moz-appearance: none;
+    border: none;
+    resize: none;
+}
+.posts__list{
+    margin-top: 20px;
+    text-align: center;
+}
