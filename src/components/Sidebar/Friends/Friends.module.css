@@ -1,0 +1,20 @@
+.friends{
+    display: flex;
+    margin-top: 10px;
+}
+.friends__item{
+    text-align: center;
+}
+.friends__avatar{
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+}
+.friends__img{
+    position: relative;
+    width: 100%;
+    border-radius: 50%;
+}
+.friends__text{
+    font-size: 12px;
+}

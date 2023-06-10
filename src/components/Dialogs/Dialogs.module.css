@@ -13,7 +13,7 @@
     text-decoration: none;
 }
 .messages{
-    padding: 5px 0 0 20px;
+    padding: 5px 20px 0 20px;
 }
 .messages__item{
     padding: 5px 0 10px 5px;
@@ -24,4 +24,22 @@
 .active{
     background-color: #477088;
     color: #90c5e4;
+}
+.messages__item{
+    max-width: 325px;
+}
+.right{
+    margin-left: auto;
+}
+.messages__new{
+    text-align: right;
+}
+.messages__new-text{
+    width: 90%;
+    display: block;
+    outline: none;
+	-moz-appearance: none;
+    border: 1px solid #000;
+    resize: none;
+    margin: 50px auto;
 }

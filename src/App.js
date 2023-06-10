@@ -21,18 +21,13 @@ function App(props) {
                 </section>
 
                 <section className='sidebar'>
-                    <Sidebar />
+                    <Sidebar state={props.state.sidebar} />
                 </section>
 
                 <section className='content'>
                     <Routes>
-                        {/* <Route path='/profile' Component={Profile} />
-                        <Route path='/dialogs/*' Component={Dialogs} /> */}
-
-                        <Route path='/profile' element={<Profile postsData={props.data.postsData}/>} />
-                        <Route path='/dialogs/*' element={<Dialogs dialogsData={props.data.dialogsData} messagesData={props.data.messagesData} />} />
-
-
+                        <Route path='/profile' element={<Profile profilePage={props.state.profilePage}/>} />
+                        <Route path='/dialogs/*' element={<Dialogs dialogsPage={props.state.dialogsPage} />} />
                         <Route path='/news' Component={News} />
                         <Route path='/music' Component={Music} />
                         <Route path='/settings' Component={Settings} />

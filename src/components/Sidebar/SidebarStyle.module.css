@@ -1,8 +1,11 @@
 .sidebar_inner{
-    padding: 15px 0 15px 10px;
+    padding-top: 15px;
     background-color: #aadaf5;
     border-radius: 25px;
     height: 100%;
+}
+.menu{
+    padding-left: 10px;
 }
 .menu__link{
     display: block;
@@ -20,4 +23,10 @@
 .active{
     background-color: #477088;
     color: #90c5e4;
+}
+.friends{
+    margin-top: 50px;
+    height: 100px;
+    background: red;
+    text-align: center;
 }
