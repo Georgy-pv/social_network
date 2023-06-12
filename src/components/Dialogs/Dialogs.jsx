@@ -11,10 +11,16 @@ function Dialogs(props) {
     let messageElements = props.dialogsPage.messagesData.map((m => <Message isYou={m.isYou} key={m.id} message = {m.message} />))
     
     let newMessageRef = React.createRef();
+    
     let sendMessage = () => {
-        let message = newMessageRef.current.value;
-        alert(`Сообщение из чата:\n\n${message}`)
-    }
+        props.addMessage();
+    };
+
+    let onMassageChange = () => {
+        let newText = newMessageRef.current.value;
+        props.updateNewMessageChange(newText)
+    };
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogs__list}>
@@ -24,7 +30,7 @@ function Dialogs(props) {
             <div className={s.messages}>
                 {messageElements}
                 <div className={s.messages__new}>
-                    <textarea ref={newMessageRef} className={s['messages__new-text']} placeholder="Введите текст" name="" id="" cols="30" rows="10"></textarea>
+                    <textarea onChange={onMassageChange} value={props.dialogsPage.newMessageText} ref={newMessageRef} className={s['messages__new-text']} placeholder="Введите текст" name="" id="" cols="30" rows="10"></textarea>
                     <button onClick={sendMessage} className={s['messages__new-btn']}>Отправить</button>
                 </div>
             </div>

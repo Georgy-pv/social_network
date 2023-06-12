@@ -12,6 +12,7 @@ import Settings from './components/Settings/Settings';
 
 
 function App(props) {
+    
     return (
         <BrowserRouter >
             <div className='app'>
@@ -26,8 +27,8 @@ function App(props) {
 
                 <section className='content'>
                     <Routes>
-                        <Route path='/profile' element={<Profile profilePage={props.state.profilePage}/>} />
-                        <Route path='/dialogs/*' element={<Dialogs dialogsPage={props.state.dialogsPage} />} />
+                        <Route path='/profile' element={<Profile updateNewPostChange={props.updateNewPostChange} addPost={props.addPost} profilePage={props.state.profilePage}/>} />
+                        <Route path='/dialogs/*' element={<Dialogs updateNewMessageChange={props.updateNewMessageChange} addMessage={props.addMessage} dialogsPage={props.state.dialogsPage} />} />
                         <Route path='/news' Component={News} />
                         <Route path='/music' Component={Music} />
                         <Route path='/settings' Component={Settings} />

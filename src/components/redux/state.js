@@ -1,4 +1,6 @@
-let state = {
+import { rerenderEntireTree } from "../../render";
+
+export let state = {
     profilePage: {
         postsData: [
             { id: 1, post: 'Мой первый пост!', likesCount: 12 },
@@ -7,7 +9,8 @@ let state = {
             { id: 5, post: 'Post 4', likesCount: 52 },
             { id: 6, post: 'Post 5', likesCount: 45 },
             { id: 7, post: 'Post 6', likesCount: 64 }
-        ]
+        ],
+        newPostText: ''
     },
     dialogsPage: {
         messagesData: [
@@ -25,7 +28,8 @@ let state = {
             { id: 5, name: 'Даша' },
             { id: 6, name: 'Катя' },
             { id: 7, name: 'Света' }
-        ]
+        ],
+        newMessageText: ''
     },
     sidebar:{
         friends:[
@@ -35,4 +39,36 @@ let state = {
         ]
     }
 };
-export { state }
+
+window.state = state;
+
+export let addPost = () => {
+    let newPost = {
+        id: state.profilePage.postsData[state.profilePage.postsData.length - 1].id + 1,
+        post: state.profilePage.newPostText,
+        likesCount: 0
+    };
+    state.profilePage.postsData.push(newPost);
+    state.profilePage.newPostText = '';
+    rerenderEntireTree(state);
+};
+
+export let addMessage = () => {
+    let newMessage = {
+        id: state.dialogsPage.messagesData[state.dialogsPage.messagesData.length - 1].id + 1,
+        message: state.dialogsPage.newMessageText,
+        isYou: true
+    };
+    state.dialogsPage.messagesData.push(newMessage);
+    state.dialogsPage.newMessageText = ''
+    rerenderEntireTree(state);
+}
+
+export let updateNewPostChange = (text) =>{
+    state.profilePage.newPostText = text;
+    rerenderEntireTree(state);
+}
+export let updateNewMessageChange = (text) =>{
+    state.dialogsPage.newMessageText = text;
+    rerenderEntireTree(state);
+}
