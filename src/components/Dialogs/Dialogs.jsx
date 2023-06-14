@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
+import { addMessageActionCreator, updateNewMessageChangeActionCreator } from '../redux/state';
 
 
 
@@ -13,12 +14,14 @@ function Dialogs(props) {
     let newMessageRef = React.createRef();
     
     let sendMessage = () => {
-        props.addMessage();
+        let action = addMessageActionCreator();
+        props.dispatch(action);
     };
 
-    let onMassageChange = () => {
-        let newText = newMessageRef.current.value;
-        props.updateNewMessageChange(newText)
+    let onMassageChange = (e) => {
+        let text = e.target.value;
+        let action = updateNewMessageChangeActionCreator(text);
+        props.dispatch(action);
     };
 
     return (
@@ -30,7 +33,7 @@ function Dialogs(props) {
             <div className={s.messages}>
                 {messageElements}
                 <div className={s.messages__new}>
-                    <textarea onChange={onMassageChange} value={props.dialogsPage.newMessageText} ref={newMessageRef} className={s['messages__new-text']} placeholder="Введите текст" name="" id="" cols="30" rows="10"></textarea>
+                    <textarea onChange={onMassageChange} value={props.dialogsPage.newMessageText} className={s['messages__new-text']} placeholder="Введите текст" name="" id="" cols="30" rows="10"></textarea>
                     <button onClick={sendMessage} className={s['messages__new-btn']}>Отправить</button>
                 </div>
             </div>
