@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
 import Header from './components/Header/Header';
-import Sidebar from './components/Sidebar/Sidebar';
 import Profile from './components/Profile/Profile';
-import Dialogs from './components/Dialogs/Dialogs';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
+import SidebarContainer from './components/Sidebar/SidebarContainer';
 
 
 function App(props) {
@@ -20,13 +20,13 @@ function App(props) {
                 </section>
 
                 <section className='sidebar'>
-                    <Sidebar state={props.state.sidebar} />
+                    <SidebarContainer store={props.store} />
                 </section>
 
                 <section className='content'>
                     <Routes>
-                        <Route path='/profile' element={<Profile dispatch={props.dispatch} profilePage={props.state.profilePage}/>} />
-                        <Route path='/dialogs/*' element={<Dialogs dispatch={props.dispatch} dialogsPage={props.state.dialogsPage} />} />
+                        <Route path='/profile' element={<Profile store={props.store} />} />
+                        <Route path='/dialogs/*' element={<DialogsContainer store={props.store} />} />
                         <Route path='/news' Component={News} />
                         <Route path='/music' Component={Music} />
                         <Route path='/settings' Component={Settings} />
