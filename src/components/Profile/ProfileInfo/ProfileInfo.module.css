@@ -1,5 +1,6 @@
 .profile__background{
-    max-width: 100%;
+    display: block;
+    width: 100%;
     background-image: url('https://gamerwall.pro/uploads/posts/2021-11/1637848931_1-gamerwall-pro-p-oboi-s-kosmicheskoi-tematikoi-oboi-na-rabo-1.jpg');
     height: 300px;
     background-size: cover;

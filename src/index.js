@@ -4,15 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { store } from './components/redux/redux-store';
+import StoreContext from './context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-let rerenderEntireTree = (state) =>{
+let rerenderEntireTree = (state) => {
     root.render(
-        <React.StrictMode>
-          <App store={store} state={state} dispatch={store.dispatch.bind(store)} />
-        </React.StrictMode>
-      );
+        <StoreContext.Provider value={store}>
+            <React.StrictMode>
+                <App />
+            </React.StrictMode>
+        </StoreContext.Provider>
+
+    );
 };
 rerenderEntireTree(store.getState())
 

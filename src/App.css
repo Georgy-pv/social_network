@@ -50,5 +50,6 @@ li {
     grid-area: s;
 }
 .content{
+    display: block;
     grid-area: p;
 }

@@ -8,14 +8,11 @@ function Profile(props) {
     return (
         <div className="main">
             <ProfileInfo />
-            <MyPostsContainer store={props.store} />
+            <MyPostsContainer />
         </div>
             
     );
 }
 
-function ProfileWrapper(props){
-    return <Profile posts={props.postsData} />
-}
 
 export default Profile;
