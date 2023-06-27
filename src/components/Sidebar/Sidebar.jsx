@@ -13,6 +13,7 @@ function Sidebar(props) {
                     <li className={s.menu__item}><NavLink to="/news" className={({isActive}) => `${s.menu__link}${isActive ? ' ' + s.active : ""}`}>Новости</NavLink></li>
                     <li className={s.menu__item}><NavLink to="/music" className={({isActive}) => `${s.menu__link}${isActive ? ' ' + s.active : ""}`}>Музыка</NavLink></li>
                     <li className={s.menu__item}><NavLink to="/settings" className={({isActive}) => `${s.menu__link}${isActive ? ' ' + s.active : ""}`}>Настройки</NavLink></li>
+                    <li className={s.menu__item}><NavLink to="/users" className={({isActive}) => `${s.menu__link}${isActive ? ' ' + s.active : ""}`}>Пользователи</NavLink></li>
                 </ul>
             </nav>
             <div className={s.friends}>

@@ -32,7 +32,6 @@ li {
 }
 
 .app{
-    max-width: 90%;
     height: 100vh;
     margin: 0 auto;
     display: grid;
@@ -52,4 +51,8 @@ li {
 .content{
     display: block;
     grid-area: p;
+}
+.users{
+    position: relative;
+    max-width: 80%;
 }
