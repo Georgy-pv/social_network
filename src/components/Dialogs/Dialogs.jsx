@@ -15,7 +15,7 @@ function Dialogs(props) {
 
     let onMassageChange = (e) => {
         let text = e.target.value;
-        props.onMassageChange(text);
+        props.updateNewMessageChange(text);
     };
 
     return (
