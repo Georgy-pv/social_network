@@ -28,6 +28,9 @@
     background-color: #0d3247;
     color: #FFF;
 }
+.users__btn:disabled {
+    opacity: 0.3;
+}
 .users__info{
     display: flex;
     justify-content: space-between;

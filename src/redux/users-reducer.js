@@ -1,16 +1,20 @@
+import { usersAPI } from "../API/api";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SETUSERS = 'SETUSERS';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_TOTAL_COUNT = 'SET-TOTAL-COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
+const DISABLED_BUTTON = 'DISABLED-BUTTON';
 
 let initialState = {
     users: [],
     totalCount: 50,
     pageSize: 10,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    disabledButton: []
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -55,6 +59,13 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 isFetching: action.isFetching
             }
+        case DISABLED_BUTTON:
+            return{
+                ...state,
+                disabledButton: action.isDisabled 
+                ? [...state.disabledButton, action.userId]
+                : state.disabledButton.filter(id => id !== action.userId)
+            }
         default:
             return state;
     };
@@ -84,5 +95,50 @@ export const toggleIsFetching = (isFetching) => ({
     type: TOGGLE_IS_FETCHING,
     isFetching: isFetching
 });
+export const toggleDisabledButton = (isDisabled, userId) => { 
+    return{
+    type: DISABLED_BUTTON,
+    isDisabled: isDisabled,
+    userId: userId
+}};
+
+
+// =============THUNK=======================
+
+export const getUsers = (currentPage, pageSize) => {
+
+    return (dispatch) => {
+        dispatch(toggleIsFetching(true));
+        usersAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(setUsers(data.items));
+            dispatch(setTotalCount(data.totalCount));
+            dispatch(toggleIsFetching(false));
+        });
+    }
+}
+
+export const followThunk = (userId) => {
+    return (dispatch) =>{
+        dispatch(toggleDisabledButton(true, userId));
+        usersAPI.follow(userId).then(data => {
+            if(data.resultCode === 0){
+                dispatch(follow(userId));
+            };
+            dispatch(toggleDisabledButton(false, userId));
+        });
+    }
+}
+
+export const unfollowThunk = (userId) => {
+    return (dispatch) =>{
+        dispatch(toggleDisabledButton(true, userId));
+        usersAPI.unfollow(userId).then(data => {
+            if(data.resultCode === 0){
+                dispatch(follow(userId));
+            };
+            dispatch(toggleDisabledButton(false, userId));
+        });
+    }
+}
 
 export default usersReducer;

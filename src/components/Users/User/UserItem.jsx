@@ -15,8 +15,8 @@ function UserItem(props) {
                 </NavLink>
                 <div className={s.users__following}>
                     {props.followed
-                        ? <button onClick={() => { props.unfollowing(props.userId) }} className={s.users__btn}>FOLLOW</button>
-                        : <button onClick={() => { props.following(props.userId) }} className={s.users__btn}>UNFOLLOW</button>}
+                        ? <button disabled={props.disabledButton.some(id => id === props.userId)} onClick={() => { props.unfollowing(props.userId) }} className={s.users__btn}>UNFOLLOW</button>
+                        : <button disabled={props.disabledButton.some(id => id === props.userId)} onClick={() => { props.following(props.userId) }} className={s.users__btn}>FOLLOW</button>}
                 </div>
             </div>
 
@@ -35,7 +35,6 @@ function UserItem(props) {
                 </div>
             </div>
         </div>
-
     );
 }
 

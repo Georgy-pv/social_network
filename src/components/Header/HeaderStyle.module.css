@@ -11,3 +11,12 @@
     top: 50%;
     transform: translate(0, -50%)
 }
+.login{
+    float: right;
+}
+.login a{
+    color: #FFF;
+    text-decoration: none;
+    padding: 10px;
+    background: #000;
+}
