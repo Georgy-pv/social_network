@@ -11,6 +11,9 @@ import {
 import { connect } from 'react-redux';
 import UserItem from './User/UserItem';
 import Preloader from '../common/Preloader/Preloader';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import {compose} from 'redux';
 
 class UsersContainer extends React.Component {
 
@@ -24,6 +27,9 @@ class UsersContainer extends React.Component {
     }
 
     render() {
+
+        if (!this.props.isAuth) return <Redirect to={'/login'} />;
+
         let usersItems = this.props.users.map(u => {
             return <UserItem key={u.id} userId={u.id} followed={u.followed} avatar={u.photos.large} fullName={u.name}
                 userStatus={u.status} unfollowing={this.props.unfollowThunk} following={this.props.followThunk} 
@@ -53,6 +59,16 @@ class UsersContainer extends React.Component {
     }
 }
 
+function mapStateToPropsRedirect(state) {
+    return {
+        isAuth: state.auth.isAuth
+    }
+};
+
+
+
+
+
 function mapStateToProps(state) {
     return {
         users: state.usersPage.users,
@@ -64,6 +80,10 @@ function mapStateToProps(state) {
     }
 };
 
-export default connect(mapStateToProps, {
-    followThunk, unfollowThunk, getUsers, setCurrentPage, setTotalCount, toggleDisabledButton
-})(UsersContainer)
+export default compose(
+    connect(mapStateToProps, {
+        followThunk, unfollowThunk, getUsers,
+        setCurrentPage, setTotalCount, toggleDisabledButton
+    }),
+    withAuthRedirect
+)(UsersContainer);
